@@ -1,0 +1,35 @@
+h1::after {
+  content: "";
+  width: 50px;
+  background-color: aqua;
+  height: 5px;
+  display: block;
+}
+
+h1::before {
+  content: "";
+  width: 50px;
+  background-color: rgb(22, 189, 64);
+  height: 5px;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+}
+
+ul li::before {
+  content: "";
+  display: inline-block;
+  background: linear-gradient(rgb(223, 212, 65), rgb(255, 255, 253));
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 1px solid rgb(223, 212, 65);
+}
