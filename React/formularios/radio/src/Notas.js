@@ -1,3 +1,4 @@
+import React from 'react';
 // No radio comparamos o valor selecionado com o valor do input, dentro do atributo checked. O que retornar true irá marcar o botão.
 const App = () => {
   const [produto, setProduto] = React.useState(''); // cada grupo deve possuir seu estado
