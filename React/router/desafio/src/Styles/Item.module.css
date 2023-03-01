@@ -1,0 +1,39 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.imagem {
+  max-width: 90%;
+  margin: 30px 0 30px 0;
+  border-radius: 5px;
+}
+
+.texto {
+  margin-top: 30px;
+  grid-column: 2;
+  grid-row: 1 /-1;
+}
+
+.desc {
+  font-weight: 500;
+  max-width: 30ch;
+}
+
+.vendido {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.anima {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: animeLeft 0.3s forwards;
+}
+
+@keyframes animeLeft {
+  to {
+    opacity: initial;
+    transform: initial;
+  }
+}
