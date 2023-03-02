@@ -4,26 +4,33 @@ import { useParams } from 'react-router-dom';
 
 const Item = () => {
   const [dados, setDados] = React.useState(null);
-  const [carregando, setCarregando] = React.useState(null);
+  const [carregando, setCarregando] = React.useState(false);
+  const [erro, setErro] = React.useState(null);
   const params = useParams();
 
   React.useEffect(() => {
     carregar();
     async function carregar() {
-      setCarregando(true);
-      const buscaDados = await fetch(
-        `https://ranekapi.origamid.dev/json/api/produto/${params.id}`,
-      );
-      const json = await buscaDados.json();
-      setDados(json);
-      setCarregando(false);
+      try {
+        setCarregando(true);
+        const buscaDados = await fetch(
+          `https://ranekapi.origamid.dev/json/api/produto/${params.id}`,
+        );
+        const json = await buscaDados.json();
+        setDados(json);
+      } catch (erro) {
+        setErro('Um erro ocorreu');
+      } finally {
+        setCarregando(false);
+      }
     }
-  }, [params]);
+  }, [params.id]);
 
+  if (carregando) return <div className={style.loading}></div>;
+  if (erro) return <p>{erro}</p>;
   if (!dados) return null;
   return (
     <>
-      {carregando && <p>Carregando...</p>}
       {!carregando && dados && (
         <div className={style.container}>
           {dados.fotos.map((valor) => (

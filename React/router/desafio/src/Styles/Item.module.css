@@ -31,9 +31,24 @@
   animation: animeLeft 0.3s forwards;
 }
 
+.loading {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 10px solid #ccc;
+  border-right-color: transparent;
+  animation: loading 1s infinite;
+}
+
 @keyframes animeLeft {
   to {
     opacity: initial;
     transform: initial;
+  }
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(360deg);
   }
 }

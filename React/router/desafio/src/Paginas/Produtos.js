@@ -18,10 +18,10 @@ const Produtos = () => {
       <Head title="Ranek" />
       {dados.map((valor) => (
         <div className={style.item} key={valor.id}>
-          <NavLink to={`produtos/${valor.id}`}>
+          <NavLink to={`/${valor.id}`}>
             <img src={valor.fotos[0].src} alt="" className={style.foto} />
           </NavLink>
-          <h3>{valor.nome}</h3>
+          <h2>{valor.nome}</h2>
         </div>
       ))}
     </div>
