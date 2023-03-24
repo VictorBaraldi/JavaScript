@@ -32,4 +32,4 @@ function toNumber(value: string | number) {
   }
 }
 
-console.log(toNumber(null));
+console.log(toNumber(12));
