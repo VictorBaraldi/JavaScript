@@ -51,7 +51,7 @@ function toggleMenu(e: PointerEvent) {
   nav?.classList.toggle('active');
   console.dir(button);
 
-  if (button instanceof HTMLElement) {
+  if (button instanceof HTMLElement && nav) {
     if (nav?.classList.contains('active')) {
       button.setAttribute('aria-label', 'Fechar menu');
       button.setAttribute('aria-expanded', 'true');
