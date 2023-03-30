@@ -29,3 +29,6 @@ const jogo: Product = {
 
 jogo.nome?.toLowerCase(); // coloca o opcional já que pode ser string ou undefined
 livro.nome?.toLowerCase();
+
+
+// strictNullChecks - Sem o strictNullChecks como true, o TypeScript assume que qualquer valor pode incluir null | undefined e consequentemente para de checar casos onde realmente o null | undefined podem ser retornados.
