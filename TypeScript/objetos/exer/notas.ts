@@ -16,17 +16,17 @@ interface Window {
   userData: object;
 }
 
-const form = document.querySelector<HTMLElement>('#form');
+const form = document.getElementById('form');
 
-if (form && form instanceof HTMLFormElement) {
-  form?.addEventListener('keyup', handleInput);
+if (form instanceof HTMLElement) {
+  form.addEventListener('keyup', handleKey);
 }
 
-function isUserData(obj: unknown): obj is UserData {
+function isUserData(value: unknown): value is UserData {
   if (
-    obj &&
-    typeof obj === 'object' &&
-    ('nome' in obj || 'email' in obj || 'cpf' in obj)
+    value &&
+    typeof value === 'object' &&
+    ('nome' in value || 'email' in value || 'cpf' in value)
   ) {
     return true;
   } else {
@@ -34,34 +34,33 @@ function isUserData(obj: unknown): obj is UserData {
   }
 }
 
-function handleInput({ target }: KeyboardEvent) {
-  if (target instanceof HTMLInputElement) {
-    window.userData = { ...window.userData, [target.id]: target.value };
-    window.localStorage.setItem('userData', JSON.stringify(window.userData));
+function handleKey(e: KeyboardEvent) {
+  if (e.target instanceof HTMLInputElement) {
+    window.userData = { ...window.userData, [e.target.id]: e.target.value };
+    const json = JSON.stringify(window.userData);
+    localStorage.setItem('userData', json);
   }
 }
 
-function validJson(str: string) {
+function jsonVerify(data: string) {
   try {
-    JSON.parse(str);
+    JSON.parse(data);
+    return true;
   } catch (e) {
     return false;
   }
-  return true;
 }
 
-function getData() {
-  const data = window.localStorage.getItem('userData');
-  const inputs = document.querySelectorAll('input');
-  if (data && validJson(data)) {
+function setDados() {
+  const data = localStorage.getItem('userData');
+  const formInputs = document.querySelectorAll('input');
+  if (data && jsonVerify(data)) {
     const dados = JSON.parse(data);
     if (isUserData(dados)) {
-      inputs.forEach((valor) => {
-        valor.value = dados[valor.name];
-        window.userData = { ...window.userData, [valor.name]: valor.value };
+      formInputs.forEach((value) => {
+        value.value = dados[value.id as keyof UserData] as string;
       });
     }
   }
 }
-getData();
-console.log(window.userData);
+setDados();
