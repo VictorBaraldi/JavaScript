@@ -45,4 +45,25 @@ const artigo: Post = {
   autor: 'Victor',
 };
 
-// Record - define a interfce de um objeto que possui <chave, tipo>. pode ser usado para definir a inteface de um objeto literal genérico
+// Record - define a interface de um objeto que possui <chave, tipo>. pode ser usado para definir a interface de um objeto literal genérico
+type ObjetoLiteral = {
+  [key: string]: unknown;
+};
+
+type ObjetoLiteral2 = Record<string, unknown>;
+
+function mostrarTitulo(obj: ObjetoLiteral) {
+  if ('titulo' in obj) {
+    console.log(obj.titulo);
+  }
+}
+
+// Erros:
+// mostrarTitulo("string");
+// mostrarTitulo(200);
+// mostrarTitulo([1, 2]);
+// mostrarTitulo(null);
+// mostrarTitulo(undefined);
+mostrarTitulo({
+  titulo: 'André',
+});
