@@ -1,0 +1,45 @@
+export default function NormalizarDados(dados: DataAPI) {
+  return {
+    nome: dados.Nome,
+    data: dados.Data,
+    email: dados.Email,
+    id: dados.ID,
+    status: dados.Status,
+    moeda: dados['Valor (R$)'],
+    valor: 0,
+    pagamento: dados['Forma de Pagamento'],
+    novo: Boolean(dados['Cliente Novo']),
+  };
+}
+
+declare global {
+  type TipoPagamento = 'Boleto' | 'Cartão de Crédito';
+  type StatusPagamento =
+    | 'Paga'
+    | 'Recusada pela operadora de cartão'
+    | 'Aguardando Pagamento'
+    | 'Estornada';
+
+  interface DataAPI {
+    Nome: string;
+    Data: string;
+    Email: string;
+    ID: number;
+    Status: StatusPagamento;
+    ['Forma de Pagamento']: TipoPagamento;
+    ['Valor (R$)']: string;
+    ['Cliente Novo']: number;
+  }
+
+  interface Data {
+    nome: string;
+    data: string;
+    email: string;
+    id: number;
+    status: StatusPagamento;
+    moeda: string;
+    valor: number | null;
+    pagamento: TipoPagamento;
+    novo: boolean;
+  }
+}

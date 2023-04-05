@@ -1,0 +1,11 @@
+body {
+  margin: 32px;
+  font-family: sans-serif;
+}
+
+h2 {
+  border-top: 6px solid ghostwhite;
+  padding-top: 1rem;
+  display: block;
+  font-size: 2rem;
+}
