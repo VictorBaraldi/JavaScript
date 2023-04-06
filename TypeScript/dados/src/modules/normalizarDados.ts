@@ -1,12 +1,15 @@
+import moedaToNumb from './moedaToNumb.js';
+import toDate from './stringToDate.js';
+
 export default function NormalizarDados(dados: DataAPI) {
   return {
     nome: dados.Nome,
-    data: dados.Data,
+    data: toDate(dados.Data),
     email: dados.Email,
     id: dados.ID,
     status: dados.Status,
     moeda: dados['Valor (R$)'],
-    valor: 0,
+    valor: moedaToNumb(dados['Valor (R$)']),
     pagamento: dados['Forma de Pagamento'],
     novo: Boolean(dados['Cliente Novo']),
   };

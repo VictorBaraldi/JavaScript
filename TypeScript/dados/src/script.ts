@@ -1,5 +1,5 @@
 import fetchData from './modules/fetchDados.js';
-import NormalizarDados from './normalizarDados.js';
+import NormalizarDados from './modules/normalizarDados.js';
 
 async function handleData() {
   const data = await fetchData<DataAPI[]>(
