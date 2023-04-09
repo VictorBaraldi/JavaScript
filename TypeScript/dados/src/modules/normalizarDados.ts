@@ -1,7 +1,7 @@
 import moedaToNumb from './moedaToNumb.js';
 import toDate from './stringToDate.js';
 
-export default function NormalizarDados(dados: DataAPI) {
+export default function NormalizarDados(dados: DataAPI): Data {
   return {
     nome: dados.Nome,
     data: toDate(dados.Data),
@@ -36,7 +36,7 @@ declare global {
 
   interface Data {
     nome: string;
-    data: string;
+    data: Date;
     email: string;
     id: number;
     status: StatusPagamento;
