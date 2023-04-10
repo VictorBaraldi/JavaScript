@@ -1,4 +1,5 @@
 import Estatisticas from './modules/Estatisticas.js';
+import { CountList } from './modules/countBY';
 import fetchData from './modules/fetchDados.js';
 import NormalizarDados from './modules/normalizarDados.js';
 
@@ -9,10 +10,33 @@ async function handleData() {
   if (!data) return;
   const transacoes = data.map(NormalizarDados);
   preencherTabela(transacoes);
+  preencherEstatisticas(transacoes);
+}
+
+function preencherPagina(lista: CountList, countId: string): void {
+  const seletor = document.getElementById(countId);
+  if (seletor) {
+    Object.keys(lista).forEach(
+      (key) => (seletor.innerHTML += `<p>${key}: ${lista[key]}</p>`),
+    );
+  }
 }
 
 function preencherEstatisticas(transacoes: Data[]): void {
   const data = new Estatisticas(transacoes);
+  const total = document.querySelector<HTMLElement>('#total span');
+  preencherPagina(data.pagamento, 'pagamento');
+  preencherPagina(data.status, 'status');
+  if (!total) return;
+  total.innerText = data.total.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
+
+  const diaElement = document.querySelector<HTMLElement>('#dia span');
+  if (diaElement) {
+    diaElement.innerText = data.melhorDia[0];
+  }
 }
 
 function preencherTabela(transacoes: Data[]): void {
