@@ -34,3 +34,9 @@ store.subscribe(() => {
 });
 
 // Unsubscribe - e por algum motivo desejar que a função pare de ser ativada quando ocorrer um dispatch, é possível utilizar o unsubscribe que é o retorno da ativação do método.
+const unsubscribe = store.subscribe(render);
+store.dispatch({ type: 'incrementar' });
+
+unsubscribe();
+// não vai mais ativar o render
+store.dispatch({ type: 'incrementar' });
