@@ -6,7 +6,6 @@ import { abrir, fechar } from './store/modal';
 const App = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
-  console.log(state);
   return (
     <div>
       {state.modal.abrir && <h1>Total: {state.contador.total}</h1>}
