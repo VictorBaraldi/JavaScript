@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from './store/login';
+import { fetchToken } from './store/login';
 
 const App = () => {
   const [username, setUsername] = React.useState('');
@@ -11,7 +11,7 @@ const App = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(login({ username, password }));
+    dispatch(fetchToken({ username, password }));
   }
 
   return (

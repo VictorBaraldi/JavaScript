@@ -41,3 +41,5 @@ const createAsyncSlice = (config) => {
   };
   return { ...slice, asyncAction };
 };
+
+export default createAsyncSlice;
